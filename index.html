@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <title>Поиск билетов</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- reset css, box-sizing and debug -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/box-sizing.css">
+    <link rel="stylesheet" href="./css/debug.css">
+    <!-- font awesome icons -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- onepage-scroll -->
+    <link rel="stylesheet" href="./css/onepage-scroll.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- video background -->
+    <script src="./js/detect.min.js"></script>
+</head>
+
+<body>
+    <header id="header" class="sticky-header">
+        <div class="container top-header">
+            <nav class="nav navbar navbar-expand-sm justify-content-between">
+                <a class=" nav-link btn" style="width: 158px;" href="#">Виртуальная приемная</a>
+                <nav class="nav justify-content-center align-items-center">
+                    <a class="nav-link btn" style="width: 42px;" href="#">RU</span></a>
+                    <a href="#"><img class="inv" src="./img/search.svg" alt=""
+                            style="height: 17px; margin: 0 17px;"></a>
+                    <a href="#" style="text-decoration: none; color: #fff; padding: 5px 10px 0 10px"><img class="inv"
+                            src="./img/location-icon2.svg" alt="" style="height: 17px; margin-right: 12px;"><span
+                            class="city">г. Москва</span></a>
+                </nav>
+            </nav>
+        </div>
+        <div class="containter-fluid middle-header">
+            <nav class="nav navbar-dark navbar navbar-expand-md justify-content-between align-items-center">
+                <button class="navbar-toggler x collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="nav-phone" style="margin-left: 49px;"><span class="phone-description">Телефон для
+                        справок:</span><br> <span style="margin-right: 10px;"><img class="inv" style="height: 15px;"
+                            src="./img/phone-icon.svg" alt=""></span><strong><a class="phone" href="tel:+78007750000">8
+                            800 775 00
+                            00</a></strong></div>
+                <div class="logo">
+                    <a class="logotype" href="#"><img src="img/RZD_logotype.png" alt=""></a>
+                    <a class="logo-description" href="#"><img src="img/RZD_description.png" alt=""></a>
+                </div>
+                <a class="auth" href="#" style="margin-right: 36px"><img class="inv" src="./img/login.svg"
+                        style="height:15px; margin-right: 10px;" alt=""><span>ВОЙТИ</span></a>
+            </nav>
+        </div>
+        <div class="container bottom-header">
+            <nav class="nav navbar navbar-dark navbar-expand-md">
+                <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarToggler">
+                    <a class="nav-link" href="#">О КОМПАНИИ</a>
+                    <span class="nav-slash">/</span>
+                    <a class="nav-link" href="#">ПАССАЖИРАМ</a>
+                    <span class="nav-slash">/</span>
+                    <a class="nav-link" href="#">ИНВЕСТОРАМ</a>
+                    <span class="nav-slash">/</span>
+                    <a class="nav-link" href="#">ГРУЗОВЫЕ ПЕРЕВОЗКИ</a>
+                    <span class="nav-slash">/</span>
+                    <a class="nav-link" href="#">ТЕНДЕРЫ</a>
+                    <span class="nav-slash">/</span>
+                    <a class="nav-link" href="#">РАБОТА В РЖД</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="main">
+        <section class="section" id="findTickets" data-section-name="tickets">
+
+            <div id="trailer" class="is_overlay">
+                <video id="video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto" muted>
+                    <source src="./video/railway.mp4">
+                    <source src="./video/railway.webm" type="video/webm">
+                </video>
+            </div>
+
+            <div id="darkVideo" class="is_overlay"></div>
+            <div class="heading justify-content-center">
+                <h1 class="text-center">ПОИСК БИЛЕТОВ И РАСПИСАНИЕ ПОЕЗДОВ</h1>
+            </div>
+            <div class="container">
+                <div id="searchForm">
+                    <ul class="nav nav-tabs row" id="myTab" role="tablist">
+                        <li class="nav-item col-md-3">
+                            <a class="nav-link active" id="pm-tab" data-toggle="tab" href="#simple" role="tab"
+                                aria-controls="pm" aria-selected="true">ПРОСТОЙ МАРШРУТ</a>
+                        </li>
+                        <li class="nav-item col-md-3">
+                            <a class="nav-link" id="sm-tab" data-toggle="tab" href="#hard" role="tab" aria-controls="sm"
+                                aria-selected="false">СЛОЖНЫЙ МАРШРУТ</a>
+                        </li>
+                        <li class="nav-item col-md-2">
+                            <a class="nav-link" id="el-tab" data-toggle="tab" href="#el" role="tab" aria-controls="el"
+                                aria-selected="false">ЭЛЕКТРИЧКА</a>
+                        </li>
+                        <li class="nav-item col-md-4">
+                            <a class="nav-link" id="fdp-tab" data-toggle="tab" href="#fdp" role="tab"
+                                aria-controls="fdp" aria-selected="false">ФАКТИЧЕСКОЕ ДВИЖЕНИЕ ПОЕЗДОВ</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="simple" role="tabpanel" aria-labelledby="">
+                            <div class="row directions align-items-center justify-content-end">
+                                <div class="col-md-5 direction-item">
+                                    <input type="text" placeholder="Откуда">
+                                </div>
+                                <div class="col-1 justify-content-center">
+                                    <img class="change-dir d-block mx-auto" src="img/exchange-arrows.svg" alt=""
+                                        style="height: 20px">
+                                </div>
+                                <div class="col-md-5 direction-item">
+                                    <input type="text" placeholder="Куда">
+                                </div>
+                                <div class="col-1">
+                                    <a class="icon-down" href="#"><img class="d-block mx-auto"
+                                            src="img/downwards-pointer.svg" alt="" style="height: 15px;"></a>
+                                </div>
+                            </div>
+                            <div class="properties align-items-center">
+                                <div class="property-item">
+                                    <input placeholder="Туда" class="textbox-n" type="text" id="dateFrom">
+                                </div>
+                                <div class="property-item">
+                                    <input placeholder="Обратно" class="textbox-n" type="text" id="dateTo">
+                                </div>
+                                <div class="property-item mr-0">
+                                    <label for="select" class="select">
+                                        <input type="radio" name="list" value="not_changed" id="select">
+                                        <label class="bg" for="bg"></label>
+                                        <div class="items">
+                                            <input type="radio" name="list" value="first_value" id="list[0]">
+                                            <label for="list[0]">Эконом</label>
+                                            <input type="radio" name="list" value="second_value" id="list[1]">
+                                            <label for="list[1]">Комфорт</label>
+                                            <input type="radio" name="list" value="third_value" id="list[2]">
+                                            <label for="list[2]">Бизнес</label>
+                                            <div id="text">
+                                                <span>Класс</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <div class="bilet-info">
+                                        <input type="checkbox" class="checkbox" id="checkbox" />
+                                        <label class="nowrap" for="checkbox">Только<br> с билетами</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="hard" role="tabpanel" aria-labelledby="">
+                            <div class="row directions align-items-center justify-content-between">
+                                <div class="col-md-5 direction-item">
+                                    <span class="direction-number">1</span>
+                                    <input type="text" placeholder="Откуда">
+                                </div>
+                                <div class="col-2 justify-content-center">
+                                    <img class="change-dir d-block mx-auto" src="img/exchange-arrows.svg" alt=""
+                                        style="height: 20px">
+                                </div>
+                                <div class="col-md-5 direction-item">
+                                    <input type="text" placeholder="Куда">
+                                </div>
+                            </div>
+                            <div class="row directions align-items-center justify-content-between">
+                                <div class="col-md-5 direction-item">
+                                    <span class="direction-number">2</span>
+                                    <input type="text" placeholder="Откуда">
+                                </div>
+                                <div class="col-2 justify-content-center">
+                                    <img class="change-dir d-block mx-auto" src="img/exchange-arrows.svg" alt=""
+                                        style="height: 20px">
+                                </div>
+                                <div class="col-md-5 direction-item">
+                                    <input type="text" placeholder="Куда">
+                                </div>
+                            </div>
+                            <div class="properties align-items-center">
+                                <div class="property-item">
+                                    <input placeholder="Туда" class="textbox-n" type="text" id="dateFrom">
+                                </div>
+                                <div class="property-item">
+                                    <input placeholder="Обратно" class="textbox-n" type="text" id="dateTo">
+                                </div>
+                                <div class="property-item mr-0">
+                                    <label for="select2" class="select">
+                                        <input type="radio" name="list" value="not_changed" id="select2">
+                                        <label class="bg" for="bg"></label>
+                                        <div class="items">
+                                            <input type="radio" name="list" value="first_value" id="list[0]">
+                                            <label for="list[0]">Эконом</label>
+                                            <input type="radio" name="list" value="second_value" id="list[1]">
+                                            <label for="list[1]">Комфорт</label>
+                                            <input type="radio" name="list" value="third_value" id="list[2]">
+                                            <label for="list[2]">Бизнес</label>
+                                            <div id="text">
+                                                <span>Класс</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <div class="bilet-info">
+                                        <input type="checkbox" class="checkbox" id="checkbox2" />
+                                        <label for="checkbox2">Только<br> с билетами</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="el" role="tabpanel" aria-labelledby="">
+                            <div class="row directions align-items-center justify-content-end">
+                                <div class="col-md-5 direction-item">
+                                    <input type="text" placeholder="Откуда">
+                                </div>
+                                <div class="col-2 justify-content-center">
+                                    <img class="change-dir d-block mx-auto" src="img/exchange-arrows.svg" alt=""
+                                        style="height: 20px">
+                                </div>
+                                <div class="col-md-5 direction-item">
+                                    <input type="text" placeholder="Куда">
+                                </div>
+                            </div>
+
+                            <div class="properties align-items-center">
+                                <div class="property-item">
+                                    <input placeholder="Туда" class="textbox-n" type="text" id="dateFrom">
+                                </div>
+                                <div class="property-item">
+                                    <input placeholder="Обратно" class="textbox-n" type="text" id="dateTo">
+                                </div>
+                                <div class="property-item mr-0">
+                                    <label for="select3" class="select">
+                                        <input type="radio" name="list" value="not_changed" id="select3">
+                                        <label class="bg" for="bg"></label>
+                                        <div class="items">
+                                            <input type="radio" name="list" value="first_value" id="list[0]">
+                                            <label for="list[0]">Стандарт</label>
+                                            <input type="radio" name="list" value="second_value" id="list[1]">
+                                            <label for="list[1]">Комфорт</label>
+                                            <div id="text">
+                                                <span>Класс</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <div class="bilet-info">
+                                        <input type="checkbox" class="checkbox" id="checkbox3" />
+                                        <label for="checkbox3">Только<br> с билетами</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="fdp" role="tabpanel" aria-labelledby="">
+                            <div class="tab-pane fade show active" id="simple" role="tabpanel" aria-labelledby="">
+                                <div class="row directions align-items-center justify-content-end">
+                                    <div class="col-md-5 direction-item">
+                                        <input type="text" placeholder="Станция отправления">
+                                    </div>
+                                    <div class="col-1 justify-content-center">
+                                        <img class="change-dir d-block mx-auto" src="img/exchange-arrows.svg" alt=""
+                                            style="height: 20px">
+                                    </div>
+                                    <div class="col-md-5 direction-item">
+                                        <input type="text" placeholder="Станция прибытия">
+                                    </div>
+                                    <div class="col-1">
+                                        <a class="icon-down" href="#"><img class="d-block mx-auto"
+                                                src="img/downwards-pointer.svg" alt="" style="height: 15px;"></a>
+                                    </div>
+                                </div>
+                                <div class="properties align-items-center">
+                                    <div class="property-item">
+                                        <input placeholder="Дата отправления" class="textbox-n" type="text"
+                                            id="dateFrom">
+                                    </div>
+                                    <div class="property-item">
+                                        <input placeholder="Дата прибытия" class="textbox-n" type="text" id="dateTo">
+                                    </div>
+                                    <div class="property-item">
+                                        <input placeholder="№ поезда" class="textbox-n" type="text" id="dateTo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container find-button">
+                <a href="#" class="badge"
+                    style="display: block; margin: 1em auto; color: #fff; text-decoration: underline; font-size: 1.2em; font-weight: normal">ОФЕРТА</a>
+                <button type="button" name="" id="" class="btn btn-red btn-flat" btn-lg btn-block
+                    style="display: block; margin: 0 auto;">НАЙТИ БИЛЕТЫ</button>
+            </div>
+        </section>
+        <section class="section" id="discounts" data-section-name="discounts">
+            <div class="container">
+                <div id="carouselDiscount" class="carousel" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="./img/family.png" alt="Первый слайд">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="./img/family.png" alt="Второй слайд">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="./img/family.png" alt="Третий слайд">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card n1">
+                            <div class="card-body">
+                                <p class="card-text text-truncate"></p>
+                                <div class="card-bottom">
+                                    <h5 class="card-title">Паровозные туры из Москвы</h5>
+                                </div>
+                                <a href="#" class="btn btn-arrow"><img style="height: 20px;" src="./img/right-arrow.svg"
+                                        alt=""> </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card n2">
+                            <div class="card-body">
+                                <div class="card-bottom">
+                                    <h5 class="card-title">Билеты на поезда ОАО "РЖД" в твоем Android смартфоне</h5>
+                                </div>
+                                <p class="card-text text-truncate">26 февраля 2016 г. запущено мобильное приложение для
+                                    покупки
+                                    билетов на поезда дальнего следования.</p>
+                                <a href="#" class="btn btn-arrow"><img style="height: 20px;" src="./img/right-arrow.svg"
+                                        alt=""> </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card n3">
+                            <div class="card-body">
+                                <div class="card-bottom">
+                                    <h5 class="card-title">Будь всегда АВТОмобилен!</h5>
+                                </div>
+                                <p class="card-text text-truncate"></p>
+                                <a href="#" class="btn btn-arrow"><img style="height: 20px;" src="./img/right-arrow.svg"
+                                        alt=""> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="news" data-section-name="news-section">
+            <div class="container">
+                <div class="row">
+                    <div class="news-card col-sm-4">
+                        <div class="card left-card">
+                            <div class="card-image">
+                                <img class="card-img-top" src="./img/news-image-3.jpg" alt="">
+                            </div>
+                            <div class="card-body">
+                                <span class="date">17.02.2017</span>
+                                <div class="card-title">
+                                </div>
+                                <div class="card-text text-truncate">
+                                    В период майских праздников маршруты ряда поездов в сообщении с Адлером будут
+                                    продлены до Имеретинского курорта
+                                </div>
+                                <div class="news-bottom">
+                                    <div class="card-links social-icons">
+                                        <a href="#"><img src="./img/vk-social-logotype.svg" alt="VK Logo"></a>
+                                        <a href="#"><img src="./img/facebook-logo.svg" alt="Facebook Logo"></a>
+                                        <a href="#"><img src="./img/twitter-logo.svg" alt="Twitter Logo"></a>
+                                        <a href="#"><img src="./img/odnoklassniki-logo.svg"
+                                                alt="Odnoklassniki Logo"></a>
+                                        <a href="#"><img src="./img/rss-symbol.svg" alt="RSS"></a>
+                                    </div>
+                                    <a href="#" class="btn btn-arrow"><img style="height: 20px;"
+                                            src="./img/right-arrow.svg" alt=""> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card col-sm-4">
+                        <div class="card left-card">
+                            <div class="card-image">
+                                <img class="card-img-top" src="./img/news-image-2.jpg" alt="">
+                            </div>
+                            <div class="card-body">
+                                <span class="date">17.02.2017</span>
+                                <div class="card-title">
+                                </div>
+                                <div class="card-text text-truncate">
+                                    ОАО "РЖД" и ООО "Уральские локомотивы" подписали соглашение о расширении парка
+                                    электропоездов
+                                </div>
+                                <div class="news-bottom">
+                                    <div class="card-links social-icons">
+                                        <a href="#"><img src="./img/vk-social-logotype.svg" alt="VK Logo"></a>
+                                        <a href="#"><img src="./img/facebook-logo.svg" alt="Facebook Logo"></a>
+                                        <a href="#"><img src="./img/twitter-logo.svg" alt="Twitter Logo"></a>
+                                        <a href="#"><img src="./img/odnoklassniki-logo.svg"
+                                                alt="Odnoklassniki Logo"></a>
+                                        <a href="#"><img src="./img/rss-symbol.svg" alt="RSS"></a>
+                                    </div>
+                                    <a href="#" class="btn btn-arrow"><img style="height: 20px;"
+                                            src="./img/right-arrow.svg" alt=""> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card col-sm-4">
+                        <div class="card left-card">
+                            <div class="card-image">
+                                <img class="card-img-top" src="./img/news-image-1.jpg" alt="Валентин Гапанович">
+                            </div>
+                            <div class="card-body">
+                                <span class="date">17.02.2017</span>
+                                <div class="card-title">
+                                </div>
+                                <div class="card-text text-truncate">
+                                    Холдинг "РЖД" обеспечит бесплатный проезд участникам и инвалидам Великой
+                                    Отечественной войны в течение всего мая
+                                </div>
+                                <div class="news-bottom">
+                                    <div class="card-links social-icons">
+                                        <a href="#"><img src="./img/vk-social-logotype.svg" alt="VK Logo"></a>
+                                        <a href="#"><img src="./img/facebook-logo.svg" alt="Facebook Logo"></a>
+                                        <a href="#"><img src="./img/twitter-logo.svg" alt="Twitter Logo"></a>
+                                        <a href="#"><img src="./img/odnoklassniki-logo.svg"
+                                                alt="Odnoklassniki Logo"></a>
+                                        <a href="#"><img src="./img/rss-symbol.svg" alt="RSS"></a>
+                                    </div>
+                                    <a href="#" class="btn btn-arrow"><img style="height: 20px;"
+                                            src="./img/right-arrow.svg" alt=""> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-more-news w-100 d-block">
+                        <a href="" class="btn btn-red btn-flat">Больше новостей</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <aside id="menu" class="sticky-aside">
+        <div class="aside-menu__button">
+            <a href="#">
+                <img src="./img/users-group.svg" alt="">
+                <span></span>
+            </a>
+        </div>
+        <div class="aside-search aside-menu__button active-button">
+            <!-- <span>ПОИСК</span> -->
+            <a href="#">
+                <img src="./img/search.svg" alt="">
+            </a>
+        </div>
+        <div class="aside-discounts aside-menu__button">
+            <!-- <span class="red">АКЦИИ</span> -->
+            <a href="#">
+                <img src="./img/discount.svg" alt="">
+            </a>
+        </div>
+        <div class="aside-news aside-menu__button">
+            <!-- <span class="red">НОВОСТИ</span> -->
+            <a href="#">
+                <img src="./img/folded-newspaper.svg" alt="">
+            </a>
+        </div>
+        <div class="aside-menu__button">
+            <a href="#">
+                <img src="./img/russia-map.png" alt="">
+                <span></span>
+            </a>
+        </div>
+        <div class="aside-menu__button">
+            <a href="#">
+                <img src="./img/hierarchical-structure.svg" alt="">
+                <span></span>
+            </a>
+        </div>
+    </aside>
+    <footer class="sticky-footer">
+        <div class="footer container-fluid">
+            <div class="d-flex justify-content-between align-items-center" style="margin: 0 0 0.5em 0.5em">
+                <div class="registration-info">@2003-2017 ОАО "РЖД"<br>Свидетельство о регистрации СМИ Эл №
+                    ФС77-25927<br>При
+                    использовании любых материалов ссылка на rzd.ru обязательна</div>
+                <div class="footer-icon"><img class="d-block mx-auto" src="img/mouse-scroll.png" alt=""
+                        style="width: 2rem"></div>
+                <div class="social-media">
+                    <div class="social-icons inverted d-flex justify-content-end">
+                        <a href="#"><img src="./img/vk-social-logotype.svg" alt="VK Logo"></a>
+                        <a href="#"><img src="./img/facebook-logo.svg" alt="Facebook Logo"></a>
+                        <a href="#"><img src="./img/twitter-logo.svg" alt="Twitter Logo"></a>
+                        <a href="#"><img src="./img/odnoklassniki-logo.svg" alt="Odnoklassniki Logo"></a>
+                        <a href="#"><img src="./img/rss-symbol.svg" alt="RSS"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-footer">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <div class=""><img class="icon-tap" src="img/tap.svg" alt=""></div>
+                <div class="social-icons inverted">
+                    <a href="#"><img src="./img/vk-social-logotype.svg" alt="VK Logo"></a>
+                    <a href="#"><img src="./img/facebook-logo.svg" alt="Facebook Logo"></a>
+                    <a href="#"><img src="./img/twitter-logo.svg" alt="Twitter Logo"></a>
+                    <a href="#"><img src="./img/odnoklassniki-logo.svg" alt="Odnoklassniki Logo"></a>
+                    <a href="#"><img src="./img/rss-symbol.svg" alt="RSS"></a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="./js/onepagescroll.js"></script>
+    <script>
+        $(window).load(function () { $('#video').get(0).play(); });
+        var video = document.getElementById('video');
+        var ua = detect.parse(navigator.userAgent);
+        if (ua.os.family === 'Android') {
+            video.setAttribute('controls', 'controls');
+        }
+
+    </script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
